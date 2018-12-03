@@ -16,7 +16,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/reconnect", reconnect).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":8081", router))
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
 
 func reconnect(w http.ResponseWriter, r *http.Request) {
