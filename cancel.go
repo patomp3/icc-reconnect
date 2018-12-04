@@ -64,7 +64,7 @@ func CancelProduct(req CancelRequest) CancelResult {
 	//Call Rest API ICC Reconnect
 	//jsonData := map[string]string{"ThaiId": "3909800183384"}
 	jsonValue, _ := json.Marshal(req)
-	response, err := http.Post("http://172.22.203.68//ConvergenceIBSTVG/ICC/cancelproduct", "application/json", bytes.NewBuffer(jsonValue))
+	response, err := http.Post("http://172.22.203.68/ConvergenceIBSTVG/ICC/cancelproduct", "application/json", bytes.NewBuffer(jsonValue))
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	} else {
