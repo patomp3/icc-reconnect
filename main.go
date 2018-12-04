@@ -35,6 +35,7 @@ func reconnect(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	log.Print("Reconnect:")
 	log.Println(req)
 
 	//call recon api
@@ -59,6 +60,7 @@ func disconnect(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	log.Println("Disconnect:")
 	log.Println(req)
 
 	//call recon api
@@ -83,6 +85,7 @@ func cancel(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	log.Println("Cancel:")
 	log.Println(req)
 
 	//call recon api
