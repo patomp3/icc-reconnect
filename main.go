@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Start recon service.....")
+	fmt.Println("Start collection service.....")
 
 	router := mux.NewRouter()
 	router.HandleFunc("/reconnect", reconnect).Methods("POST")
