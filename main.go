@@ -20,7 +20,7 @@ type config struct {
 }
 
 func main() {
-	fmt.Println("Start collection service.....")
+	fmt.Println("Start collection service....")
 
 	//env := os.Args[1]
 	var env string
