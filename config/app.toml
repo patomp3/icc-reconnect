@@ -1,12 +1,13 @@
 # Application config file.
 [development]
-port = "8000"
+port = "8080"
 reconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/reconnectproduct"
 disconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/disconnectproduct"
 cancelurl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/cancelproduct"
 
+
 [production]
-port = "8000"
-reconnecturl = "http://172.22.235.57/ConvergenceIBS/ICC/reconnectproduct"
-disconnecturl = "http://172.22.235.57/ConvergenceIBS/ICC/disconnectproduct"
-cancelurl = "http://172.22.235.57/ConvergenceIBS/ICC/cancelproduct"
+port = "8080"
+reconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/reconnectproduct"
+disconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/disconnectproduct"
+cancelurl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/cancelproduct"

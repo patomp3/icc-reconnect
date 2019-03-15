@@ -7,54 +7,48 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 )
 
-type config struct {
+type appConfig struct {
 	port          string
 	reconnecturl  string
 	cancelurl     string
 	disconnecturl string
 }
 
-func main() {
-	fmt.Println("Start collection service....")
+var cfg appConfig
 
-	//env := os.Args[1]
-	var env string
-	var cfg config
+func main() {
+	log.Printf("##### ICC Collection Service Started #####")
 
 	// For no assign parameter env. using default to Test
+	var env string
 	if len(os.Args) > 1 {
-		env = os.Args[1]
+		env = strings.ToLower(os.Args[1])
 	} else {
-		env = "Test"
+		env = "development"
 	}
 
+	// Load configuration
 	viper.SetConfigName("app")    // no need to include file extension
 	viper.AddConfigPath("config") // set the path of your config file
 	err := viper.ReadInConfig()
 	if err != nil {
 		fmt.Println("Config file not found..." + err.Error())
 	} else {
-		if env == "production" {
-			cfg.port = viper.GetString("production.port")
-			cfg.reconnecturl = viper.GetString("production.reconnecturl")
-			cfg.disconnecturl = viper.GetString("production.disconnecturl")
-			cfg.cancelurl = viper.GetString("production.cancelurl")
-		} else {
-			cfg.port = viper.GetString("development.port")
-			cfg.reconnecturl = viper.GetString("development.reconnecturl")
-			cfg.disconnecturl = viper.GetString("development.disconnecturl")
-			cfg.cancelurl = viper.GetString("development.cancelurl")
-		}
-		fmt.Println("Env=" + env)
-		fmt.Println("serverPort=" + cfg.port)
-		fmt.Println("reconnecturl=" + cfg.reconnecturl)
-		fmt.Println("disconnecturl=" + cfg.disconnecturl)
-		fmt.Println("cancelurl=" + cfg.cancelurl)
+		// read config file
+		cfg.port = viper.GetString(env + ".port")
+		cfg.reconnecturl = viper.GetString(env + ".reconnecturl")
+		cfg.disconnecturl = viper.GetString(env + ".disconnecturl")
+		cfg.cancelurl = viper.GetString(env + ".cancelurl")
+
+		log.Printf("## Loading Configuration")
+		log.Printf("## Env\t= %s", env)
+		log.Printf("## Port\t= %s", cfg.port)
 	}
 
 	router := mux.NewRouter()
@@ -79,8 +73,9 @@ func reconnect(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	log.Println("Reconnect")
-	log.Println(req)
+	log.Printf("## Reconnect Request incoming...")
+	//log.Printf("## >> Customer: %d", req.Customer.CustomerID)
+	log.Printf("## >> %v", req)
 
 	//call recon api
 	var res ReconResult
@@ -104,8 +99,9 @@ func disconnect(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	log.Println("Disconnect")
-	log.Println(req)
+	log.Printf("## Disconnect Request incoming...")
+	//log.Printf("## >> Customer: %d", req.Customer.CustomerID)
+	log.Printf("## >> %v", req)
 
 	//call recon api
 	var res DisconResult
@@ -129,8 +125,9 @@ func cancel(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	log.Println("Cancel")
-	log.Println(req)
+	log.Printf("## Cancel Request incoming...")
+	//log.Printf("## >> Customer: %d", req.Customer.CustomerID)
+	log.Printf("## >> %v", req)
 
 	//call recon api
 	var res CancelResult
