@@ -18,6 +18,7 @@ type appConfig struct {
 	reconnecturl  string
 	cancelurl     string
 	disconnecturl string
+	env           string
 }
 
 var cfg appConfig
@@ -45,10 +46,12 @@ func main() {
 		cfg.reconnecturl = viper.GetString(env + ".reconnecturl")
 		cfg.disconnecturl = viper.GetString(env + ".disconnecturl")
 		cfg.cancelurl = viper.GetString(env + ".cancelurl")
+		cfg.env = viper.GetString(env + ".env")
 
 		log.Printf("## Loading Configuration")
-		log.Printf("## Env\t= %s", env)
+		log.Printf("## System\t= %s", env)
 		log.Printf("## Port\t= %s", cfg.port)
+		log.Printf("## Env\t= %s", cfg.env)
 	}
 
 	router := mux.NewRouter()

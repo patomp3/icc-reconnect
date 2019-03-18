@@ -1,12 +1,14 @@
 # Application config file.
 [development]
+env = "DEV-UAT62"
 port = "8080"
-reconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/reconnectproduct"
-disconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/disconnectproduct"
-cancelurl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/cancelproduct"
+reconnecturl = "http://172.22.203.68/ConvergenceIBSWCF4/ICC/reconnectproduct"
+disconnecturl = "http://172.22.203.68/ConvergenceIBSWCF4/ICC/disconnectproduct"
+cancelurl = "http://172.22.203.68/ConvergenceIBSWCF4/ICC/cancelproduct"
 
 
 [production]
+env = "PROD-ICC"
 port = "8080"
 reconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/reconnectproduct"
 disconnecturl = "http://172.22.203.68/ConvergenceIBSTVG/ICC/disconnectproduct"
